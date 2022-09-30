@@ -1,0 +1,48 @@
+﻿@model List<Libro>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+</div>
+
+<div class="card">
+  <div class="card-header">
+      Lista libro
+  </div>
+  <div class="card-body">
+      <a asp-action="Libro" asp-controller="Home" asp-route-id="0" class="btn btn-success btn-sm">Nuevo Producto</a>
+      <hr />
+
+      <table class="table">
+          <thead>
+              <tr>
+                  <th>Titulo</th>
+                  <th>Descripción</th>
+                  <th>Fecha de Lanzamiento</th>
+                  <th>Autor</th>
+                  <th>Precio</th>
+                  <th>Accion</th>
+              </tr>
+          </thead>
+          <tbody>
+                @foreach(var item in Model)
+                {
+                    <tr>
+                        <td>@item.Titulo</td>
+                        <td>@item.Descripcion</td>
+                        <td>@item.FechaLanzamiento</td>
+                        <td>@item.Autor</td>
+                        <td>@item.Precio</td>
+                        <td>
+                            <a asp-action="Libro" asp-controller="Home" asp-route-id="@item.Id" class="btn btn-primary btn-sm">Editar Producto</a>
+                            <a asp-action="Eliminar" asp-controller="Home" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Eliminar</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+      </table>
+  </div>
+</div>
